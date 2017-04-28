@@ -1,7 +1,7 @@
 #!/bin/sh
 
    if [ "$GITREPO" = "" -a -d "/var/www" ] ; then
-      GITREPO="/var/www"
+      GITREPO="`env |grep PWD  |grep -v OLD |cut -d "=" -f2`"
    fi
 
    if [ "$GITREPO" != "" ] ; then
