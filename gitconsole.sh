@@ -1,6 +1,6 @@
 #!/bin/sh
 
-   if [ "$GITREPO" = "" -a -d "/var/www" ] ; then
+   if [ "$GITREPO" = "" -a -d "`env |grep PWD  |grep -v OLD |cut -d "=" -f2`" ] ; then
       GITREPO="`env |grep PWD  |grep -v OLD |cut -d "=" -f2`"
    fi
 
@@ -16,7 +16,7 @@
             message1=$(git rev-parse --abbrev-ref HEAD)
             message2=$(git log -1 --pretty=format:'%cr %ci')
             dir=`echo $dir| cut -c1-21`
-            echo -n $dir "\033[34m" "\t" $message1 "\033[33m" "\t" $message2 "\033[30m \n"
+            echo -n $dir "\033[34m" "\t" $message1 "\033[33m" "\t" $message2 "\033[0m \n"
         fi
 
       done
